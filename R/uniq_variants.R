@@ -8,9 +8,6 @@
 #' A tab-delimited table containing the identified overlaps/hits between the i
 #' nput files and the lineages' reports
 #'
-#' @param print.out
-#' Logical value indicating if the produced table should be printed
-#'
 #' @param AF_threshold
 #' A parameter indicating the AF threshold that is going to applied in order to
 #' identify the presence or not of a variant. This is used to compute the number
@@ -44,8 +41,7 @@
 uniq_variants <- function(hits_table = NULL,
                           AF_threshold = 0.8,
                           file.out = paste0("lineage_report_",
-                                            Sys.Date(), ".txt"),
-                          print.out = FALSE) {
+                                            Sys.Date(), ".txt")) {
 
     if( is.null(hits_table) ) {
 
@@ -117,16 +113,6 @@ uniq_variants <- function(hits_table = NULL,
     overall$`lineage N. rules` = lineage_stats[who, ]$N
 
     overall$`lineage prop.` = overall$N / overall$`lineage N. rules`
-
-    if( print.out ) {
-
-        data.table::fwrite(overall,
-        file = file.out,
-        row.names = FALSE,
-        quote = FALSE,
-        sep = "\t")
-
-    }
 
     return(overall)
 
