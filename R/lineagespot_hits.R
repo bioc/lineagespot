@@ -13,9 +13,6 @@
 #' @param voc
 #' A character vector containing the names of the lineages of interest
 #'
-#' @param print.out
-#' Logical value indicating if the produced table should be printed
-#'
 #' @param file.out
 #' Given name for the output file
 #'
@@ -54,9 +51,7 @@ lineagespot_hits <- function(vcf_table = NULL,
                              voc = c("B.1.617.2", "B.1.1.7", "B.1.351", "P.1"),
 
                              file.out = paste0("lineage_hits_",
-                                               Sys.Date(), ".txt"),
-
-                             print.out = FALSE) {
+                                               Sys.Date(), ".txt")) {
 
 
     if( is.null(vcf_table) ) {
@@ -307,16 +302,6 @@ lineagespot_hits <- function(vcf_table = NULL,
 
     voc_data = rbindlist(VoC_hits_list)
 
-
-    if( print.out ) {
-
-        fwrite(voc_data,
-        file = file.out,
-        row.names = FALSE,
-        quote = FALSE,
-        sep = "\t")
-
-    }
 
     return(voc_data)
 
