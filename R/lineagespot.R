@@ -51,7 +51,7 @@
 #'
 #' @examples
 #'
-#' results = lineagespot(vcf_folder = system.file("extdata", "vcf-files",
+#' results <- lineagespot(vcf_folder = system.file("extdata", "vcf-files",
 #'                                                 package = "lineagespot"),
 #'
 #'                       gff3_path = system.file("extdata",
@@ -73,7 +73,7 @@ lineagespot <- function(vcf_fls = NULL,
                         file.out.index = Sys.Date()) {
 
 
-    vcf_table = merge_vcf(vcf_fls = vcf_fls,
+    vcf_table <- merge_vcf(vcf_fls = vcf_fls,
                           vcf_folder = vcf_folder,
                           gff3_path = gff3_path,
                           file.out = paste0("Variant_table_",
@@ -81,7 +81,7 @@ lineagespot <- function(vcf_fls = NULL,
 
 
 
-    hits_table = lineagespot_hits(vcf_table = vcf_table,
+    hits_table <- lineagespot_hits(vcf_table = vcf_table,
                                   ref_folder = ref_folder,
                                   voc = voc,
                                   file.out = paste0("lineage_hits_",
@@ -89,13 +89,13 @@ lineagespot <- function(vcf_fls = NULL,
 
 
 
-    lineage_report = uniq_variants(hits_table = hits_table,
+    lineage_report <- uniq_variants(hits_table = hits_table,
                                    AF_threshold = AF_threshold,
                                    file.out = paste0("lineage_report_",
                                                      file.out.index, ".txt"),
                                    print.out = print.out)
 
-    out = list("variants.table" = vcf_table,
+    out <- list("variants.table" = vcf_table,
                "lineage.hits" = hits_table,
                "lineage.report" = lineage_report)
 
