@@ -11,10 +11,6 @@
 #' A path to a folder containing all VCF files
 #' that will be integrated into a single table
 #'
-#' @param print.out
-#' Logical value indicating if the produced table should be printed.
-#' Default value is FALSE.
-#'
 #' @param file.out.index
 #' A string index that is going to be contained in the output file names
 #'
@@ -74,16 +70,14 @@ lineagespot <- function(vcf_fls = NULL,
                         ref_folder = NULL,
                         voc = c("B.1.617.2", "B.1.1.7", "B.1.351", "P.1"),
                         AF_threshold = 0.8,
-                        file.out.index = Sys.Date(),
-                        print.out = FALSE) {
+                        file.out.index = Sys.Date()) {
 
 
     vcf_table = merge_vcf(vcf_fls = vcf_fls,
                           vcf_folder = vcf_folder,
                           gff3_path = gff3_path,
                           file.out = paste0("Variant_table_",
-                                            file.out.index, ".txt"),
-                          print.out = print.out)
+                                            file.out.index, ".txt"))
 
 
 
@@ -91,8 +85,7 @@ lineagespot <- function(vcf_fls = NULL,
                                   ref_folder = ref_folder,
                                   voc = voc,
                                   file.out = paste0("lineage_hits_",
-                                                    file.out.index, ".txt"),
-                                  print.out = print.out)
+                                                    file.out.index, ".txt"))
 
 
 
