@@ -94,8 +94,7 @@ lineagespot <- function(vcf_fls = NULL,
     lineage_report <- uniq_variants(hits_table = hits_table,
                                    AF_threshold = AF_threshold,
                                    file.out = paste0("lineage_report_",
-                                                     file.out.index, ".txt"),
-                                   print.out = print.out)
+                                                     file.out.index, ".txt"))
 
     out <- list("variants.table" = vcf_table,
                "lineage.hits" = hits_table,

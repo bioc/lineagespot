@@ -7,8 +7,7 @@
 uniq_variants(
   hits_table = NULL,
   AF_threshold = 0.8,
-  file.out = paste0("lineage_report_", Sys.Date(), ".txt"),
-  print.out = FALSE
+  file.out = paste0("lineage_report_", Sys.Date(), ".txt")
 )
 }
 \arguments{
@@ -20,8 +19,6 @@ identify the presence or not of a variant. This is used to compute the number
 of variants in a sample and eventually the proportion of a lineage.}
 
 \item{file.out}{Given name for the output file}
-
-\item{print.out}{Logical value indicating if the produced table should be printed}
 }
 \value{
 A data table with metrics assessing the
@@ -32,16 +29,16 @@ Lineage report for variants overlapping
 }
 \examples{
 
-variants_table = merge_vcf(vcf_folder = system.file("extdata", "vcf-files",
+variants_table <- merge_vcf(vcf_folder = system.file("extdata", "vcf-files",
                                                     package = "lineagespot"),
 
                            gff3_path = system.file("extdata",
                                                    "NC_045512.2_annot.gff3",
                                                    package = "lineagespot"))
 
-lineage_hits_table = lineagespot_hits(vcf_table = variants_table,
+lineage_hits_table <- lineagespot_hits(vcf_table = variants_table,
                                       voc = c("B.1.1.7", "B.1.617.2"))
 
-report = uniq_variants(hits_table = lineage_hits_table)
+report <- uniq_variants(hits_table = lineage_hits_table)
 head(report)
 }

@@ -28,7 +28,7 @@
 #' merge_vcf(vcf_folder = system.file("extdata",
 #'                                    "vcf-files",
 #'                                    package = "lineagespot"),
-#'
+#' 
 #'           gff3_path = system.file("extdata",
 #'                                   "NC_045512.2_annot.gff3",
 #'                                   package = "lineagespot"))
@@ -50,8 +50,8 @@ merge_vcf <- function(vcf_fls = NULL,
     if( is.null(vcf_fls) ) {
 
         vcf_fls <- list.files(vcf_folder,
-        pattern = "vcf",
-        full.names = TRUE)
+                              pattern = "vcf",
+                              full.names = TRUE)
 
 
     }
@@ -233,7 +233,7 @@ compute_AF <- function(x) {
 
 change_AA_abbreviations <- function(x) {
 
-    AA_abbreviations <- data.table(Three_Letter <- c("Ala",
+    AA_abbreviations <- data.table(Three_Letter = c("Ala",
                                                    "Arg",
                                                    "Asn",
                                                    "Asp",
@@ -254,7 +254,7 @@ change_AA_abbreviations <- function(x) {
                                                    "Tyr",
                                                    "Val"),
 
-                                  One_Letter <- c("A",
+                                  One_Letter = c("A",
                                                  "R",
                                                  "N",
                                                  "D",
@@ -282,8 +282,8 @@ change_AA_abbreviations <- function(x) {
     for(i in seq_len(nrow(AA_abbreviations))) {
 
         x$AA_alt <- str_replace_all(x$AA_alt,
-        AA_abbreviations[i,]$Three_Letter,
-        AA_abbreviations[i,]$One_Letter)
+                                    AA_abbreviations[i,]$Three_Letter,
+                                    AA_abbreviations[i,]$One_Letter)
 
     }
 
@@ -316,7 +316,7 @@ correct_Orf1ab_gene <- function(x, genes) {
 
 read_gene_coordinates <- function(gff_path) {
 
-    gene_annot - fread(gff_path, header = FALSE, sep = "\t")
+    gene_annot <- fread(gff_path, header = FALSE, sep = "\t")
 
     gene_annot <- gene_annot[, c(4, 5, 9), with = FALSE]
 

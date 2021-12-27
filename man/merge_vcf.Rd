@@ -8,8 +8,7 @@ merge_vcf(
   vcf_fls = NULL,
   vcf_folder = NULL,
   gff3_path = NULL,
-  file.out = paste0("Variant_table_", Sys.Date(), ".txt"),
-  print.out = FALSE
+  file.out = paste0("Variant_table_", Sys.Date(), ".txt")
 )
 }
 \arguments{
@@ -21,8 +20,6 @@ will be integrated into a single table}
 \item{gff3_path}{Path to GFF3 file}
 
 \item{file.out}{Given name for the output file}
-
-\item{print.out}{Logical value indicating if the produced table should be printed}
 }
 \value{
 A data table contaiing all variants from each sample of the input VCF files

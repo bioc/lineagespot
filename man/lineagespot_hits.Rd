@@ -8,8 +8,7 @@ lineagespot_hits(
   vcf_table = NULL,
   ref_folder = NULL,
   voc = c("B.1.617.2", "B.1.1.7", "B.1.351", "P.1"),
-  file.out = paste0("lineage_hits_", Sys.Date(), ".txt"),
-  print.out = FALSE
+  file.out = paste0("lineage_hits_", Sys.Date(), ".txt")
 )
 }
 \arguments{
@@ -20,8 +19,6 @@ lineagespot_hits(
 \item{voc}{A character vector containing the names of the lineages of interest}
 
 \item{file.out}{Given name for the output file}
-
-\item{print.out}{Logical value indicating if the produced table should be printed}
 }
 \value{
 A data table containing all identified SARS-CoV-2 variants
@@ -33,7 +30,7 @@ coming from outbreak.info reports
 }
 \examples{
 
-variants_table = merge_vcf(vcf_folder = system.file("extdata",
+variants_table <- merge_vcf(vcf_folder = system.file("extdata",
                                                     "vcf-files",
                                                     package = "lineagespot"),
 
@@ -43,12 +40,12 @@ variants_table = merge_vcf(vcf_folder = system.file("extdata",
 
 # retrieve lineage reports using outbreak.info's API
 
-lineage_hits_table = lineagespot_hits(vcf_table = variants_table,
+lineage_hits_table <- lineagespot_hits(vcf_table = variants_table,
                                       voc = c("B.1.1.7", "B.1.617.2"))
 
 
 # use user-specified references
-lineage_hits_table.2 = lineagespot_hits(vcf_table = variants_table,
+lineage_hits_table.2 <- lineagespot_hits(vcf_table = variants_table,
                                         ref_folder = system.file("extdata", "ref",
                                                                  package = "lineagespot"))
 

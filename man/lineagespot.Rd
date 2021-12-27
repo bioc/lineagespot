@@ -11,8 +11,7 @@ lineagespot(
   ref_folder = NULL,
   voc = c("B.1.617.2", "B.1.1.7", "B.1.351", "P.1"),
   AF_threshold = 0.8,
-  file.out.index = Sys.Date(),
-  print.out = FALSE
+  file.out.index = Sys.Date()
 )
 }
 \arguments{
@@ -30,9 +29,6 @@ that will be integrated into a single table}
 \item{AF_threshold}{A parameter indicating the AF threshold for identifying variants per sample}
 
 \item{file.out.index}{A string index that is going to be contained in the output file names}
-
-\item{print.out}{Logical value indicating if the produced table should be printed.
-Default value is FALSE.}
 }
 \value{
 A list of three elements;
@@ -51,7 +47,7 @@ variant(s) file(s)
 }
 \examples{
 
-results = lineagespot(vcf_folder = system.file("extdata", "vcf-files",
+results <- lineagespot(vcf_folder = system.file("extdata", "vcf-files",
                                                 package = "lineagespot"),
 
                       gff3_path = system.file("extdata",
