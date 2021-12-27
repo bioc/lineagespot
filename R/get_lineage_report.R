@@ -1,3 +1,4 @@
+#'
 #' get_lineage_report
 #'
 #' @description
@@ -24,33 +25,33 @@
 
 get_lineage_report <- function(lineages, base.url = "https://api.outbreak.info/genomics/lineage-mutations?pangolin_lineage=") {
 
-    lineages = str_to_upper(lineages)
+    lineages <- str_to_upper(lineages)
 
-    out = list()
+    out <- list()
 
     for(l in lineages) {
 
-        strain = GET(paste0(base.url, l))
+        strain <- GET(paste0(base.url, l))
 
-        strain = content(strain)
+        strain <- content(strain)
 
         if(strain$success) {
 
-            strain = strain$results[[l]]
-            strain = rbindlist(strain)
+            strain <- strain$results[[l]]
+            strain <- rbindlist(strain)
 
-            strain$`amino acid` = str_split(strain$mutation, "\\:",
+            strain$`amino acid` <- str_split(strain$mutation, "\\:",
                                             simplify = TRUE)[,2]
             
-            who = which(strain$type != "deletion")
+            who <- which(strain$type != "deletion")
 
-            strain[who, ]$`amino acid` = str_to_upper(strain[who,]$`amino acid`)
+            strain[who, ]$`amino acid` <- str_to_upper(strain[who,]$`amino acid`)
 
-            strain$barcode = paste0(strain$gene, ":", strain$`amino acid`)
+            strain$barcode <- paste0(strain$gene, ":", strain$`amino acid`)
 
-            strain[who, ]$type = "snp"
+            strain[who, ]$type <- "snp"
 
-            out[[l]] = strain
+            out[[l]] <- strain
 
         } else {
 

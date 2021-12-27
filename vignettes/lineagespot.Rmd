@@ -153,8 +153,9 @@ library(lineagespot)
 `lineagespot` can be run by calling one function that implements the overall 
 pipeline:
 
-```{r}
-results = lineagespot(vcf_folder = system.file("extdata", "vcf-files", 
+
+```{r eval=TRUE}
+results <- lineagespot(vcf_folder = system.file("extdata", "vcf-files", 
                                                 package = "lineagespot"),
 
                       gff3_path = system.file("extdata", 
