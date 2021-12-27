@@ -27,12 +27,12 @@
 #' @examples
 #'
 #' variants_table <- merge_vcf(vcf_folder = system.file("extdata",
-#'                                                     "vcf-files",
-#'                                                     package = "lineagespot"),
+#'                                                  "vcf-files",
+#'                                                  package = "lineagespot"),
 #'
-#'                            gff3_path = system.file("extdata",
-#'                                                    "NC_045512.2_annot.gff3",
-#'                                                    package = "lineagespot"))
+#'                              gff3_path = system.file("extdata",
+#'                                                  "NC_045512.2_annot.gff3",
+#'                                                  package = "lineagespot"))
 #'
 #' # retrieve lineage reports using outbreak.info's API
 #'
@@ -42,8 +42,8 @@
 #'
 #' # use user-specified references
 #' lineage_hits_table.2 <-lineagespot_hits(vcf_table = variants_table,
-#'                                    ref_folder = system.file("extdata", "ref",
-#'                                    package = "lineagespot"))
+#'                                  ref_folder = system.file("extdata", "ref",
+#'                                  package = "lineagespot"))
 #'
 
 
@@ -51,7 +51,7 @@ lineagespot_hits <- function(vcf_table = NULL,
                             ref_folder = NULL,
                             voc = c("B.1.617.2", "B.1.1.7", "B.1.351", "P.1"),
                             file.out = paste0("lineage_hits_",
-                                               Sys.Date(), ".txt")) {
+                                                Sys.Date(), ".txt")) {
 
 
     if( is.null(vcf_table) ) {
@@ -60,7 +60,7 @@ lineagespot_hits <- function(vcf_table = NULL,
 
     }
 
-    # clean AA variants --------------------------------------------------------
+    # clean AA variants ------------------------------------------------------
 
     aa_variants <- str_split(vcf_table$AA_alt, "[0-9]|_")
     codon_num <- str_split(vcf_table$AA_alt, "[A-Z]|[a-z]|\\_|\\*|\\?")
@@ -78,7 +78,7 @@ lineagespot_hits <- function(vcf_table = NULL,
     })
 
 
-    # merge overall tables -----------------------------------------------------
+    # merge overall tables ----------------------------------------------------
 
     aa_split_list <- lapply(seq_len(nrow(vcf_table)), function(i) {
 
@@ -114,8 +114,8 @@ lineagespot_hits <- function(vcf_table = NULL,
 
     aa_split_list <- rbindlist(aa_split_list)
 
-    aa_split_list <- aa_split_list[, c("ref_aa", "alt_aa", "info","codon_start",
-                                        "codon_end"), with = FALSE]
+    aa_split_list <- aa_split_list[, c("ref_aa", "alt_aa", "info",
+                                    "codon_start","codon_end"), with = FALSE]
 
     vcf_table <- cbind(vcf_table, aa_split_list)
 
@@ -127,7 +127,7 @@ lineagespot_hits <- function(vcf_table = NULL,
     vcf_table$codon_end <- as.numeric(vcf_table$codon_end)
 
 
-    # read reference -----------------------------------------------------------
+    # read reference ---------------------------------------------------------
 
     if(!is.null(ref_folder)) {
 
@@ -147,7 +147,7 @@ lineagespot_hits <- function(vcf_table = NULL,
 
             ref$type <- "snp"
 
-            ref[which(str_detect(ref$`amino acid`, "del")), ]$type = "deletion"
+            ref[which(str_detect(ref$`amino acid`, "del")),]$type = "deletion"
 
             reference_list[[i]] <- ref
 
@@ -166,7 +166,7 @@ lineagespot_hits <- function(vcf_table = NULL,
         ref <- reference_list[[ref_index]]
 
         aa_variants <- str_split(ref$`amino acid`, "[0-9]|_|\\/")
-        codon_num <- str_split(ref$`amino acid`, "[A-Z]|[a-z]|\\_|\\*|\\?|\\/")
+        codon_num <- str_split(ref$`amino acid`,"[A-Z]|[a-z]|\\_|\\*|\\?|\\/")
 
         aa_variants <- lapply(aa_variants, function(x) {
 
@@ -184,7 +184,7 @@ lineagespot_hits <- function(vcf_table = NULL,
 
         })
 
-        # VoC hits -------------------------------------------------------------
+        # VoC hits ------------------------------------------------------------
 
         voc_data <- list()
 
@@ -241,7 +241,7 @@ lineagespot_hits <- function(vcf_table = NULL,
 
 
 
-        # collapse table -------------------------------------------------------
+        # collapse table ------------------------------------------------------
 
         voc_data <- voc_data[, c("POS",
                                 "DP",
@@ -261,7 +261,7 @@ lineagespot_hits <- function(vcf_table = NULL,
 
         voc_data$AF <- voc_data$AD_alt / voc_data$DP
 
-        # add non overlapping rules --------------------------------------------
+        # add non overlapping rules -------------------------------------------
 
 
         not_overlapping_variants <- str_split(not_overlapping_variants,
@@ -272,7 +272,7 @@ lineagespot_hits <- function(vcf_table = NULL,
                                         length(unique(voc_data$sample))),
 
                                     AA_alt = rep(not_overlapping_variants[,2],
-                                                length(unique(voc_data$sample))),
+                                            length(unique(voc_data$sample))),
 
                                     sample = unique(voc_data$sample),
 

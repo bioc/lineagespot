@@ -9,7 +9,8 @@
 #'
 #' @param base.url
 #' The base API URL used to search for lineage reports
-#' Default value is "https://api.outbreak.info/genomics/lineage-mutations?pangolin_lineage="
+#' Default value is "https://api.outbreak.info/genomics/
+#' lineage-mutations?pangolin_lineage="
 #'
 #'
 #' @return A list of data table elements of lineage reports
@@ -22,9 +23,8 @@
 #'
 
 
-
 get_lineage_report <- function(lineages, base.url = 
-    "https://api.outbreak.info/genomics/lineage-mutations?pangolin_lineage=") {
+    "https://api.outbreak.info/genomics/lineage-mutations?pangolin_lineage="){
 
     lineages <- str_to_upper(lineages)
 
@@ -46,7 +46,8 @@ get_lineage_report <- function(lineages, base.url =
             
             who <- which(strain$type != "deletion")
 
-            strain[who, ]$`amino acid` <- str_to_upper(strain[who,]$`amino acid`)
+            strain[who, ]$`amino acid` <- 
+                str_to_upper(strain[who,]$`amino acid`)
 
             strain$barcode <- paste0(strain$gene, ":", strain$`amino acid`)
 

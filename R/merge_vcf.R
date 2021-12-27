@@ -61,7 +61,7 @@ merge_vcf <- function(vcf_fls = NULL, vcf_folder = NULL, gff3_path = NULL,
     }
 
 
-    # Read input VCF files -----------------------------------------------------
+    # Read input VCF files ----------------------------------------------------
 
     vcf_list <- base::list()
 
@@ -76,29 +76,29 @@ merge_vcf <- function(vcf_fls = NULL, vcf_folder = NULL, gff3_path = NULL,
     rm(i)
 
 
-    # Convert VCF to table -----------------------------------------------------
+    # Convert VCF to table ----------------------------------------------------
 
     vcf_list <- base::lapply(vcf_list, vcf_to_table)
 
-    # break multiple rules -----------------------------------------------------
+    # break multiple rules ----------------------------------------------------
 
     vcf_list <- base::lapply(vcf_list, break_multiple_variants)
 
-    # add variant parameters ---------------------------------------------------
+    # add variant parameters --------------------------------------------------
 
     vcf_list <- base::lapply(vcf_list, compute_AF)
 
-    # add variant parameters ---------------------------------------------------
+    # add variant parameters --------------------------------------------------
 
     vcf_list <- base::lapply(vcf_list, change_AA_abbreviations)
 
-    # add variant parameters ---------------------------------------------------
+    # add variant parameters --------------------------------------------------
 
     genes <- read_gene_coordinates(gff_path = gff3_path)
 
     vcf_list <- base::lapply(vcf_list, correct_Orf1ab_gene, genes)
 
-    # add sample name ----------------------------------------------------------
+    # add sample name ---------------------------------------------------------
 
     for(i in names(vcf_list)) {
 
@@ -111,7 +111,7 @@ merge_vcf <- function(vcf_fls = NULL, vcf_folder = NULL, gff3_path = NULL,
 
     }
 
-    # Combine all vcfs into one table ------------------------------------------
+    # Combine all vcfs into one table -----------------------------------------
 
     vcf_list <- rbindlist(vcf_list)
 
@@ -299,7 +299,7 @@ correct_Orf1ab_gene <- function(x, genes) {
 
     for(i in seq_len(nrow(genes))) {
 
-        who <- which(x$POS >= genes[i,]$start_pos & x$POS <= genes[i,]$end_pos)
+        who <-which(x$POS >= genes[i,]$start_pos & x$POS <= genes[i,]$end_pos)
 
         x[who, ]$codon_num <- x[who, ]$POS - genes[i,]$start_pos + 1
         x[who, ]$Gene_Name <- genes[i,]$gene_name

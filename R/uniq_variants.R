@@ -11,7 +11,7 @@
 #'
 #' @param AF_threshold
 #' A parameter indicating the AF threshold that is going to applied in order to
-#' identify the presence or not of a variant. This is used to compute the number
+#'identify the presence or not of a variant. This is used to compute the number
 #' of variants in a sample and eventually the proportion of a lineage.
 #'
 #' @param file.out
@@ -26,14 +26,14 @@
 #' @examples
 #'
 #' variants_table <- merge_vcf(vcf_folder = system.file("extdata", "vcf-files",
-#'                                                     package = "lineagespot"),
+#'                                                  package = "lineagespot"),
 #'
-#'                            gff3_path = system.file("extdata",
-#'                                                    "NC_045512.2_annot.gff3",
-#'                                                    package = "lineagespot"))
+#'                              gff3_path = system.file("extdata",
+#'                                                  "NC_045512.2_annot.gff3",
+#'                                                  package = "lineagespot"))
 #'
 #' lineage_hits_table <- lineagespot_hits(vcf_table = variants_table,
-#'                                       voc = c("B.1.1.7", "B.1.617.2"))
+#'                                      voc = c("B.1.1.7", "B.1.617.2"))
 #'
 #' report <- uniq_variants(hits_table = lineage_hits_table)
 #' head(report)
@@ -50,29 +50,29 @@ uniq_variants <- function(hits_table = NULL,
 
     }
 
-    # lineage overview ---------------------------------------------------------
+    # lineage overview -------------------------------------------------------
 
     lineage_stats <- unique(hits_table[, c("Gene_Name", "AA_alt", "lineage"),
-                                      with = FALSE])
+                                        with = FALSE])
 
     lineage_stats <- lineage_stats[, .N, by = lineage]
 
     count_lineages <- hits_table[which(hits_table$AF >= AF_threshold), ]
 
     count_lineages <- unique(count_lineages[, c("Gene_Name", "AA_alt",
-                                               "sample", "lineage"),
-                                           with = FALSE])
+                                                "sample", "lineage"),
+                                                with = FALSE])
 
     count_lineages <- count_lineages[, .N, by = .(lineage, sample)]
 
-    # mean AF of all variants --------------------------------------------------
+    # mean AF of all variants ------------------------------------------------
 
     meanAF <- hits_table[, .(meanAF = mean(AF)), by = .(lineage, sample)]
 
 
-    # Find unique variants per lineage -----------------------------------------
+    # Find unique variants per lineage ---------------------------------------
 
-    count_uniq <- hits_table[, c("Gene_Name", "AA_alt", "lineage"),with = FALSE]
+    count_uniq <- hits_table[,c("Gene_Name", "AA_alt", "lineage"),with = FALSE]
     count_uniq <- unique(count_uniq)
     count_uniq <- count_uniq[order(count_uniq$Gene_Name, count_uniq$AA_alt), ]
     count_uniq <- count_uniq[, .N, by = .(Gene_Name, AA_alt)]
@@ -83,23 +83,23 @@ uniq_variants <- function(hits_table = NULL,
     hits_table_uniq <- hits_table[which(hits_table$Gene_Name %in% 
                                         count_uniq$Gene_Name &
                                         hits_table$AA_alt %in% 
-                                            count_uniq$AA_alt), ]
+                                        count_uniq$AA_alt), ]
 
-    # mean AF of unique variants -----------------------------------------------
+    # mean AF of unique variants ---------------------------------------------
 
     meanAF_uniq <- hits_table_uniq[, .(meanAF_uniq = mean(AF)),
-                                  by = .(lineage, sample)]
+                                   by = .(lineage, sample)]
 
-    # filter out zero-AF variants ----------------------------------------------
+    # filter out zero-AF variants --------------------------------------------
 
     hits_table_uniq <- hits_table_uniq[which(hits_table_uniq$AF != 0), ]
 
     # min AF of non zeror unique variants
 
     minAF_uniq <- hits_table_uniq[, .(minAF_uniq_nonzero = min(AF)),
-                                 by = .(lineage, sample)]
+                                   by = .(lineage, sample)]
 
-    # create output table ------------------------------------------------------
+    # create output table ----------------------------------------------------
 
     overall <- rbindlist(list(meanAF, meanAF_uniq, minAF_uniq, count_lineages),
     use.names = TRUE,
