@@ -1,3 +1,4 @@
+#'
 #' lineagespot
 #'
 #' @description
@@ -116,14 +117,6 @@ lineagespot <- function(vcf_fls = NULL,
 utils::globalVariables(c("DP", ".", "AD_alt", "POS", "Gene_Name", "AA_alt",
                          "start_pos", "end_pos", "gene_name", "lineage",
                          "AF", ""))
-
-
-
-
-
-
-
-
 
 
 
