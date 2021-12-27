@@ -158,7 +158,8 @@ results = lineagespot(vcf_folder = system.file("extdata", "vcf-files",
                                               "NC_045512.2_annot.gff3", 
                                               package = "lineagespot"),
 
-                      voc = c("B.1.1.7", "B.1.617.2", "B.1.351"))
+                      ref_folder = system.file("extdata", "ref", 
+                                               package = "lineagespot"))
 ```
 
 ## Explore the results
@@ -173,7 +174,7 @@ head(results$variants.table)
 ```
 - A table with the identified overlaps/hits between the variant table and the given lineage reports.
 
-```{r eval=TRUE}
+```{r}
 # lineages' hits
 head(results$lineage.hits)
 ```
@@ -182,7 +183,7 @@ head(results$lineage.hits)
   To this end, the mean AF (allele frequence) of the variants per lineage, the mean AF of the unique variants per lineage and the non-zero min. AF of the lineage's unique variants are computed.
   Moreover given a AF threshold the number of variants in each sample is computed along with the resulting proportion (Number of variants to the number of lineage rules).
 
-```{r eval=TRUE}
+```{r}
 # lineagespot report
 head(results$lineage.report)
 ```

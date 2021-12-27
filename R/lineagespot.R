@@ -62,7 +62,8 @@
 #'                                               "NC_045512.2_annot.gff3",
 #'                                               package = "lineagespot"),
 #'
-#'                       voc = c("B.1.1.7", "B.1.617.2"))
+#'                       ref_folder = system.file("extdata", "ref", 
+#'                                                package = "lineagespot"))
 #'
 #' head( results$lineage.report )
 #'
