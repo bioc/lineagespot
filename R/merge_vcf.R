@@ -1,3 +1,4 @@
+#'
 #' merge_vcf
 #'
 #' @description
@@ -334,3 +335,4 @@ read_gene_coordinates <- function(gff_path) {
 
 
 }
+

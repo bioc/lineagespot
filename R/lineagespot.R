@@ -1,3 +1,4 @@
+#'
 #' lineagespot
 #'
 #' @description
@@ -58,7 +59,8 @@
 #'                                               "NC_045512.2_annot.gff3",
 #'                                               package = "lineagespot"),
 #'
-#'                       voc = c("B.1.1.7", "B.1.617.2"))
+#'                       ref_folder = system.file("extdata", "ref", 
+#'                                                package = "lineagespot"))
 #'
 #' head( results$lineage.report )
 #'
@@ -108,14 +110,6 @@ lineagespot <- function(vcf_fls = NULL,
 utils::globalVariables(c("DP", ".", "AD_alt", "POS", "Gene_Name", "AA_alt",
                          "start_pos", "end_pos", "gene_name", "lineage",
                          "AF", ""))
-
-
-
-
-
-
-
-
 
 
 

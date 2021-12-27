@@ -1,3 +1,4 @@
+#'
 #' lineagespot_hits
 #'
 #' @description
@@ -306,3 +307,4 @@ lineagespot_hits <- function(vcf_table = NULL,
     return(voc_data)
 
 }
+

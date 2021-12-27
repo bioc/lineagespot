@@ -1,4 +1,5 @@
 #'
+#'
 #' uniq_variants
 #'
 #' @description
@@ -119,5 +120,6 @@ uniq_variants <- function(hits_table = NULL,
 
 
 }
+
 
 
