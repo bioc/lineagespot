@@ -34,10 +34,8 @@
 #'                                   package = "lineagespot"))
 
 
-merge_vcf <- function(vcf_fls = NULL,
-                      vcf_folder = NULL,
-                      gff3_path = NULL,
-                      file.out = paste0("Variant_table_", Sys.Date(), ".txt")) {
+merge_vcf <- function(vcf_fls = NULL, vcf_folder = NULL, gff3_path = NULL,
+                    file.out = paste0("Variant_table_", Sys.Date(), ".txt")) {
 
 
     if( is.null(vcf_fls) & is.null(vcf_folder) ) {
@@ -50,8 +48,8 @@ merge_vcf <- function(vcf_fls = NULL,
     if( is.null(vcf_fls) ) {
 
         vcf_fls <- list.files(vcf_folder,
-                              pattern = "vcf",
-                              full.names = TRUE)
+                                pattern = "vcf",
+                                full.names = TRUE)
 
 
     }
@@ -131,13 +129,15 @@ vcf_to_table <- function(x) {
                 as.data.frame(fixed(x)),
                 as.data.frame(info(x)))
     
-    out$ALT <- unlist(lapply(out$ALT, function(x){ return(paste(as.character(x), collapse = ",")) }))
+    out$ALT <- unlist(lapply(out$ALT, function(x){ return(paste(as.character(x),
+                                                            collapse = ",")) }))
     
     out$ANN <- unlist(lapply(out$ANN, function(x){ return(x[1]) }))
     
     out$ID <- row.names(out)
     
-    out$AD <- unlist(lapply(assays(x)[["AD"]], function(x) {return(paste(x, collapse = ","))}))
+    out$AD <- unlist(lapply(assays(x)[["AD"]], function(x) 
+                                            {return(paste(x, collapse = ","))}))
 
     out <- setDT(out)
 
@@ -148,12 +148,12 @@ vcf_to_table <- function(x) {
     # ANN_matrix <- paste0(ANN_matrix[,1], "|", ANN_matrix[,2])
 
     values_wewant <- c("seqnames", # "CHROM",
-                      "start", # "POS",
-                      "ID",
-                      "REF",
-                      "ALT",
-                      "DP",  # "gt_DP",
-                      "AD" ) # "gt_AD")
+                        "start", # "POS",
+                        "ID",
+                        "REF",
+                        "ALT",
+                        "DP",  # "gt_DP",
+                        "AD" ) # "gt_AD")
 
     result <- intersect(values_wewant, colnames(out))
 
@@ -195,16 +195,16 @@ break_multiple_variants <- function(x) {
 
 
         out[[i]] <- data.table(CHROM = x[who, ]$CHROM,
-                              POS = x[who, ]$POS,
-                              ID = x[who, ]$ID,
-                              REF = x[who, ]$REF,
-                              ALT = ALT_matrix[who, i],
-                              DP = x[who, ]$DP,
-                              AD_ref = AD_matrix[who, 1],
-                              AD_alt = AD_matrix[who, i+1],
-                              Gene_Name = x[who, ]$Gene_Name,
-                              Nt_alt = x[who, ]$Nt_alt,
-                              AA_alt = x[who, ]$AA_alt)
+                                POS = x[who, ]$POS,
+                                ID = x[who, ]$ID,
+                                REF = x[who, ]$REF,
+                                ALT = ALT_matrix[who, i],
+                                DP = x[who, ]$DP,
+                                AD_ref = AD_matrix[who, 1],
+                                AD_alt = AD_matrix[who, i+1],
+                                Gene_Name = x[who, ]$Gene_Name,
+                                Nt_alt = x[who, ]$Nt_alt,
+                                AA_alt = x[who, ]$AA_alt)
 
     }
 
@@ -234,46 +234,46 @@ compute_AF <- function(x) {
 change_AA_abbreviations <- function(x) {
 
     AA_abbreviations <- data.table(Three_Letter = c("Ala",
-                                                   "Arg",
-                                                   "Asn",
-                                                   "Asp",
-                                                   "Cys",
-                                                   "Glu",
-                                                   "Gln",
-                                                   "Gly",
-                                                   "His",
-                                                   "Ile",
-                                                   "Leu",
-                                                   "Lys",
-                                                   "Met",
-                                                   "Phe",
-                                                   "Pro",
-                                                   "Ser",
-                                                   "Thr",
-                                                   "Trp",
-                                                   "Tyr",
-                                                   "Val"),
+                                                    "Arg",
+                                                    "Asn",
+                                                    "Asp",
+                                                    "Cys",
+                                                    "Glu",
+                                                    "Gln",
+                                                    "Gly",
+                                                    "His",
+                                                    "Ile",
+                                                    "Leu",
+                                                    "Lys",
+                                                    "Met",
+                                                    "Phe",
+                                                    "Pro",
+                                                    "Ser",
+                                                    "Thr",
+                                                    "Trp",
+                                                    "Tyr",
+                                                    "Val"),
 
-                                  One_Letter = c("A",
-                                                 "R",
-                                                 "N",
-                                                 "D",
-                                                 "C",
-                                                 "E",
-                                                 "Q",
-                                                 "G",
-                                                 "H",
-                                                 "I",
-                                                 "L",
-                                                 "K",
-                                                 "M",
-                                                 "F",
-                                                 "P",
-                                                 "S",
-                                                 "T",
-                                                 "W",
-                                                 "Y",
-                                                 "V"))
+                                    One_Letter = c("A",
+                                                    "R",
+                                                    "N",
+                                                    "D",
+                                                    "C",
+                                                    "E",
+                                                    "Q",
+                                                    "G",
+                                                    "H",
+                                                    "I",
+                                                    "L",
+                                                    "K",
+                                                    "M",
+                                                    "F",
+                                                    "P",
+                                                    "S",
+                                                    "T",
+                                                    "W",
+                                                    "Y",
+                                                    "V"))
 
 
     x$Nt_alt <- str_remove_all(x$Nt_alt, "c\\.")
@@ -304,7 +304,7 @@ correct_Orf1ab_gene <- function(x, genes) {
         x[who, ]$codon_num <- x[who, ]$POS - genes[i,]$start_pos + 1
         x[who, ]$Gene_Name <- genes[i,]$gene_name
         x[who, ]$codon_num <- ( x[who, ]$codon_num %/% 3 ) +
-                             ( x[who, ]$codon_num %% 3 > 0 )
+                            ( x[who, ]$codon_num %% 3 > 0 )
 
     }
 
@@ -322,9 +322,11 @@ read_gene_coordinates <- function(gff_path) {
 
     colnames(gene_annot) <- c("start_pos", "end_pos", "gene_name")
 
-    gene_annot[which(gene_annot$gene_name %in% paste0("NSP", seq_len(10))), ]$gene_name <- "ORF1a"
+    gene_annot[which(gene_annot$gene_name %in% 
+                        paste0("NSP", seq_len(10))), ]$gene_name <- "ORF1a"
 
-    gene_annot[which(str_detect(gene_annot$gene_name, "NSP")), ]$gene_name <- "ORF1b"
+    gene_annot[which(str_detect(gene_annot$gene_name, 
+                                "NSP")), ]$gene_name <- "ORF1b"
 
     gene_annot <- gene_annot[, .(start_pos = min(start_pos),
     end_pos = max(end_pos)), by = gene_name]

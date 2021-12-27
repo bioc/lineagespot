@@ -23,7 +23,8 @@
 
 
 
-get_lineage_report <- function(lineages, base.url = "https://api.outbreak.info/genomics/lineage-mutations?pangolin_lineage=") {
+get_lineage_report <- function(lineages, base.url = 
+    "https://api.outbreak.info/genomics/lineage-mutations?pangolin_lineage=") {
 
     lineages <- str_to_upper(lineages)
 

@@ -41,17 +41,16 @@
 #'
 #'
 #' # use user-specified references
-#' lineage_hits_table.2 <- lineagespot_hits(vcf_table = variants_table,
-#'                                         ref_folder = system.file("extdata", "ref",
-#'                                                                  package = "lineagespot"))
+#' lineage_hits_table.2 <-lineagespot_hits(vcf_table = variants_table,
+#'                                    ref_folder = system.file("extdata", "ref",
+#'                                    package = "lineagespot"))
 #'
 
 
 lineagespot_hits <- function(vcf_table = NULL,
-                             ref_folder = NULL,
-                             voc = c("B.1.617.2", "B.1.1.7", "B.1.351", "P.1"),
-
-                             file.out = paste0("lineage_hits_",
+                            ref_folder = NULL,
+                            voc = c("B.1.617.2", "B.1.1.7", "B.1.351", "P.1"),
+                            file.out = paste0("lineage_hits_",
                                                Sys.Date(), ".txt")) {
 
 
@@ -83,12 +82,8 @@ lineagespot_hits <- function(vcf_table = NULL,
 
     aa_split_list <- lapply(seq_len(nrow(vcf_table)), function(i) {
 
-        out <- data.table(ref_aa = NA,
-                         alt_aa = NA,
-                         info = NA,
-                         codon_num = NA,
-                         codon_start = NA,
-                         codon_end = NA)
+        out <- data.table(ref_aa = NA, alt_aa = NA, info = NA,
+                        codon_num = NA, codon_start = NA, codon_end = NA)
 
 
         if(length(aa_variants[[i]]) == 2) {
@@ -119,13 +114,13 @@ lineagespot_hits <- function(vcf_table = NULL,
 
     aa_split_list <- rbindlist(aa_split_list)
 
-    aa_split_list <- aa_split_list[, c("ref_aa", "alt_aa", "info",
-                                      "codon_start", "codon_end"), with = FALSE]
+    aa_split_list <- aa_split_list[, c("ref_aa", "alt_aa", "info","codon_start",
+                                        "codon_end"), with = FALSE]
 
     vcf_table <- cbind(vcf_table, aa_split_list)
 
     vcf_table$change_length_nt <- abs(str_length(vcf_table$ALT) -
-                                         str_length(vcf_table$REF))
+                                        str_length(vcf_table$REF))
 
     vcf_table$codon_num <- as.numeric(vcf_table$codon_num)
     vcf_table$codon_start <- as.numeric(vcf_table$codon_start)
@@ -270,14 +265,14 @@ lineagespot_hits <- function(vcf_table = NULL,
 
 
         not_overlapping_variants <- str_split(not_overlapping_variants,
-                                             "\\:", simplify = TRUE)
+                                            "\\:", simplify = TRUE)
 
         voc_data <- rbind(voc_data,
-                         data.table(Gene_Name = rep(not_overlapping_variants[,1],
-                                                    length(unique(voc_data$sample))),
+                    data.table(Gene_Name = rep(not_overlapping_variants[,1],
+                                        length(unique(voc_data$sample))),
 
                                     AA_alt = rep(not_overlapping_variants[,2],
-                                                 length(unique(voc_data$sample))),
+                                                length(unique(voc_data$sample))),
 
                                     sample = unique(voc_data$sample),
 

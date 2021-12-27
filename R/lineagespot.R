@@ -29,7 +29,8 @@
 #' 
 #' @import data.table
 #' @importFrom stringr str_detect str_split str_squish str_remove_all 
-#' @importFrom stringr str_replace_all str_detect str_to_upper str_remove str_length
+#' @importFrom stringr str_replace_all str_detect str_to_upper str_remove 
+#'             str_length
 #' @importFrom httr GET content
 #' @importFrom VariantAnnotation readVcf info fixed
 #' @importFrom SummarizedExperiment assays
@@ -76,29 +77,29 @@ lineagespot <- function(vcf_fls = NULL,
 
 
     vcf_table <- merge_vcf(vcf_fls = vcf_fls,
-                          vcf_folder = vcf_folder,
-                          gff3_path = gff3_path,
-                          file.out = paste0("Variant_table_",
-                                            file.out.index, ".txt"))
+                        vcf_folder = vcf_folder,
+                        gff3_path = gff3_path,
+                        file.out = paste0("Variant_table_",
+                                    file.out.index, ".txt"))
 
 
 
     hits_table <- lineagespot_hits(vcf_table = vcf_table,
-                                  ref_folder = ref_folder,
-                                  voc = voc,
-                                  file.out = paste0("lineage_hits_",
-                                                    file.out.index, ".txt"))
+                                    ref_folder = ref_folder,
+                                    voc = voc,
+                                    file.out = paste0("lineage_hits_",
+                                                file.out.index, ".txt"))
 
 
 
     lineage_report <- uniq_variants(hits_table = hits_table,
-                                   AF_threshold = AF_threshold,
-                                   file.out = paste0("lineage_report_",
-                                                     file.out.index, ".txt"))
+                                    AF_threshold = AF_threshold,
+                                    file.out = paste0("lineage_report_",
+                                                file.out.index, ".txt"))
 
     out <- list("variants.table" = vcf_table,
-               "lineage.hits" = hits_table,
-               "lineage.report" = lineage_report)
+                "lineage.hits" = hits_table,
+                "lineage.report" = lineage_report)
 
 
     return(out)
@@ -107,8 +108,8 @@ lineagespot <- function(vcf_fls = NULL,
 
 # Removes R CMD check NOTE regarding global variables
 utils::globalVariables(c("DP", ".", "AD_alt", "POS", "Gene_Name", "AA_alt",
-                         "start_pos", "end_pos", "gene_name", "lineage",
-                         "AF", ""))
+                        "start_pos", "end_pos", "gene_name", "lineage",
+                        "AF", ""))
 
 
 

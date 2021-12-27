@@ -46,7 +46,7 @@ uniq_variants <- function(hits_table = NULL,
 
     if( is.null(hits_table) ) {
 
-        stop('Please provide a tab-delimited table containing SARS-CoV-2 overlaps')
+    stop('Please provide a tab-delimited table containing SARS-CoV-2 overlaps')
 
     }
 
@@ -72,7 +72,7 @@ uniq_variants <- function(hits_table = NULL,
 
     # Find unique variants per lineage -----------------------------------------
 
-    count_uniq <- hits_table[, c("Gene_Name", "AA_alt", "lineage"), with = FALSE]
+    count_uniq <- hits_table[, c("Gene_Name", "AA_alt", "lineage"),with = FALSE]
     count_uniq <- unique(count_uniq)
     count_uniq <- count_uniq[order(count_uniq$Gene_Name, count_uniq$AA_alt), ]
     count_uniq <- count_uniq[, .N, by = .(Gene_Name, AA_alt)]
@@ -80,8 +80,10 @@ uniq_variants <- function(hits_table = NULL,
 
     count_uniq <- count_uniq[which(count_uniq$N == 1), ]
 
-    hits_table_uniq <- hits_table[which(hits_table$Gene_Name %in% count_uniq$Gene_Name &
-                                           hits_table$AA_alt %in% count_uniq$AA_alt), ]
+    hits_table_uniq <- hits_table[which(hits_table$Gene_Name %in% 
+                                        count_uniq$Gene_Name &
+                                        hits_table$AA_alt %in% 
+                                            count_uniq$AA_alt), ]
 
     # mean AF of unique variants -----------------------------------------------
 
@@ -105,7 +107,8 @@ uniq_variants <- function(hits_table = NULL,
 
     overall <- overall[order(overall$lineage, overall$sample), ]
 
-    overall <- overall[, lapply(.SD, sum, na.rm = TRUE), by = .(lineage, sample)]
+    overall <- overall[, lapply(.SD, sum, na.rm = TRUE), 
+                        by = .(lineage, sample)]
 
     overall[which(overall$minAF_uniq_nonzero == 0), ]$minAF_uniq_nonzero = NA
 
