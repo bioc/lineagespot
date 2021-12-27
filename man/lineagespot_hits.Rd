@@ -30,23 +30,30 @@ coming from outbreak.info reports
 }
 \examples{
 
-variants_table <- merge_vcf(vcf_folder = system.file("extdata",
-                                                    "vcf-files",
-                                                    package = "lineagespot"),
-
-                           gff3_path = system.file("extdata",
-                                                   "NC_045512.2_annot.gff3",
-                                                   package = "lineagespot"))
+variants_table <- merge_vcf(
+    vcf_folder = system.file("extdata",
+        "vcf-files",
+        package = "lineagespot"
+    ),
+    gff3_path = system.file("extdata",
+        "NC_045512.2_annot.gff3",
+        package = "lineagespot"
+    )
+)
 
 # retrieve lineage reports using outbreak.info's API
 
-lineage_hits_table <- lineagespot_hits(vcf_table = variants_table,
-                                      voc = c("B.1.1.7", "B.1.617.2"))
+lineage_hits_table <- lineagespot_hits(
+    vcf_table = variants_table,
+    voc = c("B.1.1.7", "B.1.617.2")
+)
 
 
 # use user-specified references
-lineage_hits_table.2 <- lineagespot_hits(vcf_table = variants_table,
-                                        ref_folder = system.file("extdata", "ref",
-                                                                 package = "lineagespot"))
-
+lineage_hits_table.2 <- lineagespot_hits(
+    vcf_table = variants_table,
+    ref_folder = system.file("extdata", "ref",
+        package = "lineagespot"
+    )
+)
 }

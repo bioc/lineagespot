@@ -33,12 +33,12 @@ that will be integrated into a single table}
 \value{
 A list of three elements;
 \itemize{
-\item Variants' table; A data table containing all variants that are included in
-the input VCF files
+\item Variants' table; A data table containing all variants that are
+included in the input VCF files
 \item Lineage hits; A data table containing identified hits between the input
 variants and outbreak.info's lineage reports
-\item Lineage report; A data table with computed metrics about the prevalence of
-the lineage of interest per sample.
+\item Lineage report; A data table with computed metrics about
+the prevalence of the lineage of interest per sample.
 }
 }
 \description{
@@ -47,16 +47,18 @@ variant(s) file(s)
 }
 \examples{
 
-results <- lineagespot(vcf_folder = system.file("extdata", "vcf-files",
-                                                package = "lineagespot"),
+results <- lineagespot(
+    vcf_folder = system.file("extdata", "vcf-files",
+        package = "lineagespot"
+    ),
+    gff3_path = system.file("extdata",
+        "NC_045512.2_annot.gff3",
+        package = "lineagespot"
+    ),
+    ref_folder = system.file("extdata", "ref",
+        package = "lineagespot"
+    )
+)
 
-                      gff3_path = system.file("extdata",
-                                              "NC_045512.2_annot.gff3",
-                                              package = "lineagespot"),
-
-                      ref_folder = system.file("extdata", "ref", 
-                                               package = "lineagespot"))
-
-head( results$lineage.report )
-
+head(results$lineage.report)
 }
