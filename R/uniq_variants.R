@@ -127,7 +127,7 @@ uniq_variants <- function(
 
     overall[which(overall$minAF_uniq_nonzero == 0), ]$minAF_uniq_nonzero <- NA
 
-    who <- base::match(overall$lineage, lineage_stats$lineage)
+    who <- match(overall$lineage, lineage_stats$lineage)
 
     overall$`lineage N. rules` <- lineage_stats[who, ]$N
 

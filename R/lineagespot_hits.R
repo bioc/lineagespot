@@ -161,7 +161,7 @@ lineagespot_hits <- function(
         reference_list <- get_lineage_report(lineages = voc)
     }
 
-    VoC_hits_list <- base::list()
+    VoC_hits_list <- list()
 
     for (ref_index in names(reference_list)) {
         ref <- reference_list[[ref_index]]
@@ -286,7 +286,7 @@ lineagespot_hits <- function(
         VoC_hits_list[[ref_index]] <- voc_data
     }
 
-    for (i in base::names(VoC_hits_list)) {
+    for (i in names(VoC_hits_list)) {
         strain <- str_split(i, "\\/", simplify = TRUE)
         strain <- strain[, ncol(strain)]
         strain <- str_remove(strain, "\\.txt")
