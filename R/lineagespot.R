@@ -64,45 +64,49 @@
 #' )
 #'
 #' head(results$lineage.report)
+#' 
+
 lineagespot <- function(vcf_fls = NULL,
                         vcf_folder = NULL,
                         gff3_path = NULL,
                         ref_folder = NULL,
                         voc = c("B.1.617.2", "B.1.1.7", "B.1.351", "P.1"),
-                        AF_threshold = 0.8,
-                        ) {
+                        AF_threshold = 0.8
+) {
+    
     vcf_table <- merge_vcf(
         vcf_fls = vcf_fls,
         vcf_folder = vcf_folder,
-        gff3_path = gff3_path,
-        )
+        gff3_path = gff3_path
     )
-
-
-
+    
+    
+    
+    
     hits_table <- lineagespot_hits(
         vcf_table = vcf_table,
         ref_folder = ref_folder,
-        voc = voc,
-        )
+        voc = voc
     )
-
-
-
+    
+    
+    
+    
     lineage_report <- uniq_variants(
         hits_table = hits_table,
-        AF_threshold = AF_threshold,
-        )
+        AF_threshold = AF_threshold
     )
-
+    
+    
     out <- list(
         "variants.table" = vcf_table,
         "lineage.hits" = hits_table,
         "lineage.report" = lineage_report
     )
-
-
+    
+    
     return(out)
+    
 }
 
 # Removes R CMD check NOTE regarding global variables

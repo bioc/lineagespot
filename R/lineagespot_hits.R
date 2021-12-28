@@ -52,9 +52,8 @@
 lineagespot_hits <- function(
     vcf_table = NULL,
     ref_folder = NULL,
-    voc = c("B.1.617.2", "B.1.1.7", "B.1.351", "P.1"),
-    )
-) {
+    voc = c("B.1.617.2", "B.1.1.7", "B.1.351", "P.1")
+    ) {
     if (is.null(vcf_table)) {
         stop("Please provide a tab-delimited table containing variants.")
     }

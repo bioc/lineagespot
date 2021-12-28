@@ -45,7 +45,8 @@ Imports:
     SummarizedExperiment,
     data.table,
     stringr,
-    httr
+    httr,
+    magrittr
 Suggests:
     BiocStyle,
     RefManageR,

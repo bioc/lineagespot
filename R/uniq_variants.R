@@ -41,9 +41,8 @@
 #' head(report)
 uniq_variants <- function(
     hits_table = NULL,
-    AF_threshold = 0.8,
-    )
-) {
+    AF_threshold = 0.8
+    ) {
     if (is.null(hits_table)) {
         stop("Please provide a tab-delimited table")
     }

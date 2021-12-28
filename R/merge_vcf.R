@@ -35,7 +35,7 @@
 merge_vcf <- function(
     vcf_fls = NULL,
     vcf_folder = NULL,
-    gff3_path = NULL,
+    gff3_path = NULL
 ) {
     if (is.null(vcf_fls) & is.null(vcf_folder)) {
         stop("Please provide some VCF files")
