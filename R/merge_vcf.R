@@ -11,9 +11,6 @@
 #' A path to a folder containing all VCF file that
 #' will be integrated into a single table
 #'
-#' @param file.out
-#' Given name for the output file
-#'
 #' @param gff3_path
 #' Path to GFF3 file
 #'
@@ -39,7 +36,6 @@ merge_vcf <- function(
     vcf_fls = NULL,
     vcf_folder = NULL,
     gff3_path = NULL,
-    file.out = paste0("Variant_table_", Sys.Date(), ".txt")
 ) {
     if (is.null(vcf_fls) & is.null(vcf_folder)) {
         stop("Please provide some VCF files")

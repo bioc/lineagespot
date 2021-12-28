@@ -14,9 +14,6 @@
 #' @param voc
 #' A character vector containing the names of the lineages of interest
 #'
-#' @param file.out
-#' Given name for the output file
-#'
 #'
 #' @return
 #' A data table containing all identified SARS-CoV-2 variants
@@ -56,8 +53,6 @@ lineagespot_hits <- function(
     vcf_table = NULL,
     ref_folder = NULL,
     voc = c("B.1.617.2", "B.1.1.7", "B.1.351", "P.1"),
-    file.out = paste0(
-        "lineage_hits_", Sys.Date(), ".txt"
     )
 ) {
     if (is.null(vcf_table)) {

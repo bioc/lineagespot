@@ -12,9 +12,6 @@
 #' A path to a folder containing all VCF files
 #' that will be integrated into a single table
 #'
-#' @param file.out.index
-#' A string index that is going to be contained in the output file names
-#'
 #' @param gff3_path
 #' Path to GFF3 file containing SARS-CoV-2 gene coordinates.
 #'
@@ -73,13 +70,11 @@ lineagespot <- function(vcf_fls = NULL,
                         ref_folder = NULL,
                         voc = c("B.1.617.2", "B.1.1.7", "B.1.351", "P.1"),
                         AF_threshold = 0.8,
-                        file.out.index = Sys.Date()) {
+                        ) {
     vcf_table <- merge_vcf(
         vcf_fls = vcf_fls,
         vcf_folder = vcf_folder,
         gff3_path = gff3_path,
-        file.out = paste0(
-            "Variant_table_", file.out.index, ".txt"
         )
     )
 
@@ -89,8 +84,6 @@ lineagespot <- function(vcf_fls = NULL,
         vcf_table = vcf_table,
         ref_folder = ref_folder,
         voc = voc,
-        file.out = paste0(
-            "lineage_hits_", file.out.index, ".txt"
         )
     )
 
@@ -99,9 +92,6 @@ lineagespot <- function(vcf_fls = NULL,
     lineage_report <- uniq_variants(
         hits_table = hits_table,
         AF_threshold = AF_threshold,
-        file.out = paste0(
-            "lineage_report_",
-            file.out.index, ".txt"
         )
     )
 

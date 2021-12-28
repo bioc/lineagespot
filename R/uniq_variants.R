@@ -14,9 +14,6 @@
 #' identify the presence or not of a variant. This is used to compute the number
 #' of variants in a sample and eventually the proportion of a lineage.
 #'
-#' @param file.out
-#' Given name for the output file
-#'
 #' @return A data table with metrics assessing the
 #' abundance of every lineage in each samples
 #'
@@ -45,8 +42,6 @@
 uniq_variants <- function(
     hits_table = NULL,
     AF_threshold = 0.8,
-    file.out = paste0(
-        "lineage_report_", Sys.Date(), ".txt"
     )
 ) {
     if (is.null(hits_table)) {
