@@ -10,8 +10,7 @@ lineagespot(
   gff3_path = NULL,
   ref_folder = NULL,
   voc = c("B.1.617.2", "B.1.1.7", "B.1.351", "P.1"),
-  AF_threshold = 0.8,
-  file.out.index = Sys.Date()
+  AF_threshold = 0.8
 )
 }
 \arguments{
@@ -27,8 +26,6 @@ that will be integrated into a single table}
 \item{voc}{A character vector containing the names of the lineages of interest}
 
 \item{AF_threshold}{A parameter indicating the AF threshold for identifying variants per sample}
-
-\item{file.out.index}{A string index that is going to be contained in the output file names}
 }
 \value{
 A list of three elements;
@@ -61,4 +58,5 @@ results <- lineagespot(
 )
 
 head(results$lineage.report)
+
 }

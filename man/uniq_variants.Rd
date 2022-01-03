@@ -4,11 +4,7 @@
 \alias{uniq_variants}
 \title{uniq_variants}
 \usage{
-uniq_variants(
-  hits_table = NULL,
-  AF_threshold = 0.8,
-  file.out = paste0("lineage_report_", Sys.Date(), ".txt")
-)
+uniq_variants(hits_table = NULL, AF_threshold = 0.8)
 }
 \arguments{
 \item{hits_table}{A tab-delimited table containing the identified overlaps/hits between the i
@@ -17,8 +13,6 @@ nput files and the lineages' reports}
 \item{AF_threshold}{A parameter indicating the AF threshold that is going to applied in order to
 identify the presence or not of a variant. This is used to compute the number
 of variants in a sample and eventually the proportion of a lineage.}
-
-\item{file.out}{Given name for the output file}
 }
 \value{
 A data table with metrics assessing the

@@ -7,8 +7,7 @@
 lineagespot_hits(
   vcf_table = NULL,
   ref_folder = NULL,
-  voc = c("B.1.617.2", "B.1.1.7", "B.1.351", "P.1"),
-  file.out = paste0("lineage_hits_", Sys.Date(), ".txt")
+  voc = c("B.1.617.2", "B.1.1.7", "B.1.351", "P.1")
 )
 }
 \arguments{
@@ -17,8 +16,6 @@ lineagespot_hits(
 \item{ref_folder}{A path to lineages' reports}
 
 \item{voc}{A character vector containing the names of the lineages of interest}
-
-\item{file.out}{Given name for the output file}
 }
 \value{
 A data table containing all identified SARS-CoV-2 variants
