@@ -213,6 +213,11 @@ isGff3 <- function(file){
 #' A parameter indicating the number of VCF files 
 #' stored in the VCF list.
 #'
+#'
+#' @return
+#' Return TRUE if all input parameters are valid.
+#' 
+#' 
 #' @export
 #'
 #' @examples
@@ -266,10 +271,12 @@ input_check <- function(
       stop("No VCF is found. Please insert valid input files.")
     }
     
+    
   } 
   
   if (isGff3(gff3_path) == FALSE){
     stop('No valid gff3 was given. Please insert path of valid gff3.')
   }
+  return (TRUE)
   
 }

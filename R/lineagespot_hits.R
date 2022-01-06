@@ -290,6 +290,9 @@ lineagespot_hits <- function(
 
     voc_data <- rbindlist(VoC_hits_list)
 
-
+    
     return(voc_data)
 }
+
+
+

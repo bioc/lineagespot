@@ -25,6 +25,9 @@ that will be integrated into a single table.}
 \item{vcf_exists}{A parameter indicating the number of VCF files
 stored in the VCF list.}
 }
+\value{
+Return TRUE if all input parameters are valid.
+}
 \description{
 Check the validity of input parameters from lineagespot function.
 }
