@@ -12,4 +12,10 @@ test_that('Test lineagespot runs properly',{
                                  package = "lineagespot"
         )
     ))
+  
+    expect_error(lineagespot(
+      vcf_folder = NULL,
+      gff3_path = NULL,
+      ref_folder = NULL
+      ))
 })

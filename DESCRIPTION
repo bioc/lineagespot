@@ -46,7 +46,8 @@ Imports:
     data.table,
     stringr,
     httr,
-    magrittr
+    magrittr,
+    utils
 Suggests:
     BiocStyle,
     RefManageR,

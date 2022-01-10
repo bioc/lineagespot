@@ -37,25 +37,11 @@ merge_vcf <- function(
     vcf_folder = NULL,
     gff3_path = NULL
 ) {
-    if (is.null(vcf_fls) & is.null(vcf_folder)) {
-        stop("Please provide some VCF files")
-    }
-
-
-    if (is.null(vcf_fls)) {
-        vcf_fls <- list.files(vcf_folder,
-            pattern = "vcf",
-            full.names = TRUE
-        )
-    }
-
-    if (is.null(gff3_path)) {
-        stop("Please provide a valid GFF file containing gene coordinates")
-    }
-
+    
+ 
+    vcf_fls <- input_check(vcf_fls,vcf_folder,gff3_path)
 
     # Read input VCF files ----------------------------------------------------
-
     vcf_list <- list()
 
     for (i in vcf_fls) {
@@ -328,3 +314,20 @@ read_gene_coordinates <- function(gff_path) {
 
     return(gene_annot)
 }
+
+
+# merge_vcf(
+#       vcf_folder = system.file("scripts",
+#           "vcf-files",
+#           package = "lineagespot"
+#       ),
+#       gff3_path = system.file("extdata",
+#           "NC_045512.2_annot.gff3",
+#           package = "lineagespot"
+#       )
+#   )
+
+
+
+
+

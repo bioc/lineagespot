@@ -36,14 +36,9 @@
 #'
 #' # retrieve lineage reports using outbreak.info's API
 #'
-#' lineage_hits_table <- lineagespot_hits(
-#'     vcf_table = variants_table,
-#'     voc = c("B.1.1.7", "B.1.617.2")
-#' )
-#'
-#'
+
 #' # use user-specified references
-#' lineage_hits_table.2 <- lineagespot_hits(
+#' lineage_hits_table <- lineagespot_hits(
 #'     vcf_table = variants_table,
 #'     ref_folder = system.file("extdata", "ref",
 #'         package = "lineagespot"
@@ -56,6 +51,9 @@ lineagespot_hits <- function(
     ) {
     if (is.null(vcf_table)) {
         stop("Please provide a tab-delimited table containing variants.")
+    }
+    if (is.null(ref_folder)) {
+        stop("Please provide a path to lineages' reports.")
     }
 
     # clean AA variants ------------------------------------------------------
@@ -293,6 +291,5 @@ lineagespot_hits <- function(
     
     return(voc_data)
 }
-
 
 

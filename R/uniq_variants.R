@@ -31,14 +31,18 @@
 #'         package = "lineagespot"
 #'     )
 #' )
-#'
+#' 
 #' lineage_hits_table <- lineagespot_hits(
 #'     vcf_table = variants_table,
-#'     voc = c("B.1.1.7", "B.1.617.2")
+#'     ref_folder = system.file("extdata", "ref",
+#'         package = "lineagespot")
 #' )
-#'
+#' 
 #' report <- uniq_variants(hits_table = lineage_hits_table)
 #' head(report)
+#' 
+
+
 uniq_variants <- function(
     hits_table = NULL,
     AF_threshold = 0.8
@@ -129,6 +133,7 @@ uniq_variants <- function(
 
     return(overall)
 }
+
 
 
 
