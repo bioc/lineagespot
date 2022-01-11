@@ -70,8 +70,6 @@ vignette: >
 ```{r vignetteSetup, echo=FALSE, message=FALSE, warning = FALSE}
 ## For links
 library("BiocStyle")
-## Track time spent on making the vignette
-startTime <- Sys.time()
 ## Bib setup
 library("RefManageR")
 ## Write bibliography information
