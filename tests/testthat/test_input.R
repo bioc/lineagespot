@@ -1,7 +1,7 @@
 
 
 test_that('Input file is vcf',{
-    expect_vector(isVcf(
+    expect_vector(list_vcf(
         vcf_folder = system.file("extdata", "vcf-files",package = "lineagespot"
     ),
         gff3_path = system.file("extdata","NC_045512.2_annot.gff3",
@@ -9,15 +9,15 @@ test_that('Input file is vcf',{
     )
     ))
   
-    expect_equal(length(isVcf(
+    expect_equal(length(list_vcf(
         vcf_folder = system.file("extdata", "vcf-files",package = "lineagespot"
         ),
         gff3_path = system.file("extdata","NC_045512.2_annot.gff3",
                               package = "lineagespot"
         )
-        ))-1,3)
+        )),3)
     
-    expect_equal(as.integer(isVcf(
+    expect_equal(length(list_vcf(
         vcf_folder = system.file("scripts", "vcf-files",package = "lineagespot"
         ),
         gff3_path = system.file("extdata","NC_045512.2_annot.gff3",
@@ -25,25 +25,20 @@ test_that('Input file is vcf',{
         )
         )),0)
     
-    expect_error(isVcf(
-        vcf_fls = system.file("extdata", "vcf-files",package = "lineagespot"
-        ),
-        gff3_path = system.file("extdata","NC_045512.2_annot.gff3",
-                              package = "lineagespot"
-        )))
+    
     
 })
 
 test_that('Input file is gff3',{
-    expect_true(isGff3(system.file("extdata","NC_045512.2_annot.gff3",
+    expect_true(list_gff3(system.file("extdata","NC_045512.2_annot.gff3",
                                     package = "lineagespot")))
-    expect_false(isGff3(system.file("extdata","vcf-files",
+    expect_false(list_gff3(system.file("extdata","vcf-files",
                                     "SampleA_freebayes_ann.vcf",
                                     package = "lineagespot")))
 })
 
 test_that('Input check runs properly',{
-    expect_error(input_check(vcf_fls = system.file("extdata", "vcf-files",
+    expect_error( list_input(vcf_fls = system.file("extdata", "vcf-files",
                                                    "SampleA_freebayes_ann.vcf",
                                                    package = "lineagespot"
                             ),
@@ -56,7 +51,7 @@ test_that('Input check runs properly',{
                             )
                             ))
 
-    expect_error(input_check(vcf_fls = NULL,
+    expect_error( list_input(vcf_fls = NULL,
 
                             vcf_folder = NULL,
 
@@ -65,7 +60,7 @@ test_that('Input check runs properly',{
                                                     package = "lineagespot"
                             )))
 
-    expect_error(input_check(vcf_folder = system.file("extdata", "vcf-files",
+    expect_error( list_input(vcf_folder = system.file("extdata", "vcf-files",
                                                      package = "lineagespot"
                             ),
                             gff3_path = system.file("extdata", "vcf-files",
@@ -74,7 +69,7 @@ test_that('Input check runs properly',{
                             )))
 
 
-    expect_vector(input_check(vcf_folder = system.file("extdata", "vcf-files",
+    expect_vector( list_input(vcf_folder = system.file("extdata", "vcf-files",
                                                     package = "lineagespot"
                             ),
                             gff3_path = system.file("extdata",

@@ -39,7 +39,7 @@ merge_vcf <- function(
 ) {
     
  
-    vcf_fls <- input_check(vcf_fls,vcf_folder,gff3_path)
+    vcf_fls <- list_input(vcf_fls,vcf_folder,gff3_path)
 
     # Read input VCF files ----------------------------------------------------
     vcf_list <- list()

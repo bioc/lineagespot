@@ -1,5 +1,5 @@
 
-#' isVcf
+#' list_vcf
 #'
 #' @param vcf_fls 
 #' A character vector of paths to VCF files
@@ -11,24 +11,16 @@
 #' @param gff3_path 
 #' Path to GFF3 file containing SARS-CoV-2 gene coordinates.
 #' 
-#' @param vcf_exists 
-#' A parameter indicating the number of VCF files 
-#' stored in the VCF list.
-#'
 #' @description
 #' Identify VCF files from a group of files.
 #'
 #' @return
-#' A list of two elements;
 #' * VCF list; A list where only VCF files are stored.
-#' 
-#' * number of VCF files; A parameter indicating the number of VCF files 
-#' stored in the VCF list.
 #' 
 #'
 #' @examples
 #'
-#' isVcf_info <- isVcf(
+#' list_vcf_info <- list_vcf(
 #'     vcf_folder = system.file("extdata", "vcf-files",
 #'                              package = "lineagespot"
 #'     ),
@@ -37,13 +29,12 @@
 #'                           package = "lineagespot"
 #'     )
 #' )
-#' print(isVcf_info)
+#' print(list_vcf_info)
 #' 
 
-isVcf <- function(vcf_fls = NULL,
+list_vcf <- function(vcf_fls = NULL,
                   vcf_folder = NULL,
-                  gff3_path= NULL,
-                  vcf_exists = 0){
+                  gff3_path= NULL){
     
     if (is.null(vcf_fls) & is.null(vcf_folder)){
         stop('No VCF was given')
@@ -68,34 +59,7 @@ isVcf <- function(vcf_fls = NULL,
           )
 
           return( vcf_fls )
-        
-        # if (length(vcf_folder) == 1){
-        #   
-        #   # if(endsWith(vcf_folder,'.vcf')){
-        #   #   
-        #   #   stop('Please provide one path to a folder of VCF files.')
-        #   #   
-        #   # } else {
-        #   #   
-        #   #   vcf_l <- list.files(vcf_folder,pattern = "vcf",
-        #   #                       full.names = TRUE)
-        #   # }
-        #   
-        #     vcf_l <- list.files(
-        #       vcf_folder,
-        #       pattern = "vcf",
-        #       full.names = TRUE
-        #     )
-        #     
-        #     return( vcf_l )
-        #   
-        # } else {
-        #   
-        #   stop(c(
-        #     "Please provide a path to a folder containing VCF files."
-        #   ))
-        # }
-        
+      
         
       } else {
         
@@ -111,15 +75,13 @@ isVcf <- function(vcf_fls = NULL,
         return(vcf_fls)
       }
       
-      # num_vcf <- length(vcf_l)
-      
       
     }
   
 }
 
 
-#' isGff3
+#' list_gff3
 #'
 #' @description
 #' Identify whether a file is in GFF3 format.
@@ -135,10 +97,10 @@ isVcf <- function(vcf_fls = NULL,
 #' 
 #' gff3_path <- system.file("extdata","NC_045512.2_annot.gff3",
 #'                          package = "lineagespot")
-#' isGff3(gff3_path)
+#' list_gff3(gff3_path)
 #' 
 
-isGff3 <- function(file){
+list_gff3 <- function(file){
     
     if (is.null(file)) {
         stop(c(
@@ -160,7 +122,7 @@ isGff3 <- function(file){
 }
 
 
-#' input_check
+#' list_input
 #' 
 #' @description 
 #' Check the validity of input parameters from lineagespot function.
@@ -175,8 +137,6 @@ isGff3 <- function(file){
 #' @param gff3_path 
 #' Path to GFF3 file containing SARS-CoV-2 gene coordinates.
 #' 
-#' @importFrom utils tail
-#' 
 #' @return
 #' Return a character vector of paths to VCF files.
 #' 
@@ -185,7 +145,7 @@ isGff3 <- function(file){
 #' @examples
 #' 
 #' 
-#' vcflist <- input_check(
+#' vcflist <- list_input(
 #'   vcf_folder = system.file("extdata", "vcf-files",
 #'                            package = "lineagespot"
 #'   ),
@@ -194,23 +154,21 @@ isGff3 <- function(file){
 #'                           package = "lineagespot")
 #' )
 
-input_check <- function(
+list_input <- function(
     
     vcf_fls = NULL,
     vcf_folder = NULL,
     gff3_path= NULL){
     
     
-    vcf_fls <- isVcf(vcf_fls, vcf_folder, gff3_path)
-    # vcf_li <- isVcf_info[1:tail(isVcf_info,n=1)]
-    # vcf_exists <- as.integer(tail(isVcf_info,n=1))
+    vcf_fls <- list_vcf(vcf_fls, vcf_folder, gff3_path)
    
 
     if (length(vcf_fls) == 0){
         stop("No VCF is found. Please insert valid input files.")
     }
     
-    if (isGff3(gff3_path) == FALSE){
+    if (list_gff3(gff3_path) == FALSE){
         stop('No valid gff3 was given. Please insert path of valid gff3.')
     }
     
@@ -218,7 +176,6 @@ input_check <- function(
     return(vcf_fls)
     
 }
-
 
 
 
