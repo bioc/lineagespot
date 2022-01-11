@@ -61,32 +61,40 @@ isVcf <- function(vcf_fls = NULL,
       
       if (is.null(vcf_fls)){
         
-        if (length(vcf_folder) == 1){
-          
-          # if(endsWith(vcf_folder,'.vcf')){
-          #   
-          #   stop('Please provide one path to a folder of VCF files.')
-          #   
-          # } else {
-          #   
-          #   vcf_l <- list.files(vcf_folder,pattern = "vcf",
-          #                       full.names = TRUE)
-          # }
-          
-            vcf_l <- list.files(
-              vcf_folder,
-              pattern = "vcf",
-              full.names = TRUE
-            )
-            
-            return( vcf_l )
-          
-        } else {
-          
-          stop(c(
-            "Please provide a path to a folder containing VCF files."
-          ))
-        }
+        vcf_fls <- list.files(
+            vcf_folder,
+            pattern = "vcf",
+            full.names = TRUE
+          )
+
+          return( vcf_fls )
+        
+        # if (length(vcf_folder) == 1){
+        #   
+        #   # if(endsWith(vcf_folder,'.vcf')){
+        #   #   
+        #   #   stop('Please provide one path to a folder of VCF files.')
+        #   #   
+        #   # } else {
+        #   #   
+        #   #   vcf_l <- list.files(vcf_folder,pattern = "vcf",
+        #   #                       full.names = TRUE)
+        #   # }
+        #   
+        #     vcf_l <- list.files(
+        #       vcf_folder,
+        #       pattern = "vcf",
+        #       full.names = TRUE
+        #     )
+        #     
+        #     return( vcf_l )
+        #   
+        # } else {
+        #   
+        #   stop(c(
+        #     "Please provide a path to a folder containing VCF files."
+        #   ))
+        # }
         
         
       } else {
@@ -98,6 +106,9 @@ isVcf <- function(vcf_fls = NULL,
           stop('No VCF files have been provided.')
           
         }
+        
+        
+        return(vcf_fls)
       }
       
       # num_vcf <- length(vcf_l)
