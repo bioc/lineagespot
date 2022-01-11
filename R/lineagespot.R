@@ -75,11 +75,6 @@ lineagespot <- function(vcf_fls = NULL,
 ) {
     
     
-    if((is.null(vcf_fls)) && (is.null(vcf_folder)) && (is.null(gff3_path)) 
-    && (is.null(ref_folder))) {
-        stop("Please provide input parameters.")
-    }
-    
     vcf_table <- merge_vcf(
         vcf_fls = vcf_fls,
         vcf_folder = vcf_folder,

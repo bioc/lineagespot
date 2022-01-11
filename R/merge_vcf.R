@@ -316,16 +316,7 @@ read_gene_coordinates <- function(gff_path) {
 }
 
 
-# merge_vcf(
-#       vcf_folder = system.file("scripts",
-#           "vcf-files",
-#           package = "lineagespot"
-#       ),
-#       gff3_path = system.file("extdata",
-#           "NC_045512.2_annot.gff3",
-#           package = "lineagespot"
-#       )
-#   )
+
 
 
 

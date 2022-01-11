@@ -13,9 +13,5 @@ test_that('Test lineagespot runs properly',{
         )
     ))
   
-    expect_error(lineagespot(
-      vcf_folder = NULL,
-      gff3_path = NULL,
-      ref_folder = NULL
-      ))
+  
 })

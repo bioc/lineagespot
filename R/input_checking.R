@@ -57,7 +57,7 @@ isVcf <- function(vcf_fls = NULL,
         if (is.null(vcf_fls)){
             if (length(vcf_folder) == 1){
                 if(endsWith(vcf_folder,'.vcf')){
-                    vcf_l <- vcf_folder
+                    stop('Please provide one path to a folder of VCF files.')
                 }
                 else{
                     vcf_l <- list.files(vcf_folder,pattern = "vcf",
@@ -109,7 +109,7 @@ isVcf <- function(vcf_fls = NULL,
 isGff3 <- function(file){
     
     if (is.null(file)) {
-        stop("Please provide a valid GFF file containing gene coordinates")
+        stop("Please provide a valid GFF3 file containing gene coordinates")
     }
     if (length(file) >1) {
         stop("Please give path of only one gff3.")
