@@ -10,8 +10,7 @@ lineagespot(
   gff3_path = NULL,
   ref_folder = NULL,
   voc = c("B.1.617.2", "B.1.1.7", "B.1.351", "P.1"),
-  AF_threshold = 0.8,
-  file.out.index = Sys.Date()
+  AF_threshold = 0.8
 )
 }
 \arguments{
@@ -27,18 +26,16 @@ that will be integrated into a single table}
 \item{voc}{A character vector containing the names of the lineages of interest}
 
 \item{AF_threshold}{A parameter indicating the AF threshold for identifying variants per sample}
-
-\item{file.out.index}{A string index that is going to be contained in the output file names}
 }
 \value{
 A list of three elements;
 \itemize{
-\item Variants' table; A data table containing all variants that are included in
-the input VCF files
+\item Variants' table; A data table containing all variants that are
+included in the input VCF files
 \item Lineage hits; A data table containing identified hits between the input
 variants and outbreak.info's lineage reports
-\item Lineage report; A data table with computed metrics about the prevalence of
-the lineage of interest per sample.
+\item Lineage report; A data table with computed metrics about
+the prevalence of the lineage of interest per sample.
 }
 }
 \description{
@@ -47,16 +44,19 @@ variant(s) file(s)
 }
 \examples{
 
-results <- lineagespot(vcf_folder = system.file("extdata", "vcf-files",
-                                                package = "lineagespot"),
+results <- lineagespot(
+    vcf_folder = system.file("extdata", "vcf-files",
+        package = "lineagespot"
+    ),
+    gff3_path = system.file("extdata",
+        "NC_045512.2_annot.gff3",
+        package = "lineagespot"
+    ),
+    ref_folder = system.file("extdata", "ref",
+        package = "lineagespot"
+    )
+)
 
-                      gff3_path = system.file("extdata",
-                                              "NC_045512.2_annot.gff3",
-                                              package = "lineagespot"),
-
-                      ref_folder = system.file("extdata", "ref", 
-                                               package = "lineagespot"))
-
-head( results$lineage.report )
+head(results$lineage.report)
 
 }
