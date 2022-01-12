@@ -128,7 +128,9 @@ your `R` session:
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
+
 BiocManager::install("lineagespot")
+
 ## Check that you have a valid Bioconductor installation
 BiocManager::valid()
 ```
