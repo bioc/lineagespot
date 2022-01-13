@@ -32,6 +32,7 @@
 #' @importFrom VariantAnnotation readVcf info fixed
 #' @importFrom SummarizedExperiment assays
 #' @importFrom MatrixGenerics rowRanges
+#' @importFrom utils globalVariables
 #'
 #' @return
 #' A list of three elements;
@@ -111,7 +112,7 @@ lineagespot <- function(vcf_fls = NULL,
 }
 
 # Removes R CMD check NOTE regarding global variables
-utils::globalVariables(
+globalVariables(
     c(
         "DP", ".", "AD_alt", "POS", "Gene_Name", "AA_alt",
         "start_pos", "end_pos", "gene_name", "lineage",
