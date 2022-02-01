@@ -30,9 +30,9 @@ test_that('Input file is vcf',{
 })
 
 test_that('Input file is gff3',{
-    expect_true(list_gff3(system.file("extdata","NC_045512.2_annot.gff3",
+    expect_true(is_gff3(system.file("extdata","NC_045512.2_annot.gff3",
                                     package = "lineagespot")))
-    expect_false(list_gff3(system.file("extdata","vcf-files",
+    expect_false(is_gff3(system.file("extdata","vcf-files",
                                     "SampleA_freebayes_ann.vcf",
                                     package = "lineagespot")))
 })
