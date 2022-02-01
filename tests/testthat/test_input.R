@@ -35,6 +35,7 @@ test_that('Input file is gff3',{
     expect_false(is_gff3(system.file("extdata","vcf-files",
                                     "SampleA_freebayes_ann.vcf",
                                     package = "lineagespot")))
+    expect_false(is_gff3(("/path/to/fake/gff3/file.csv")))
 })
 
 test_that('Input check runs properly',{

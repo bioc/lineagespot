@@ -24,8 +24,8 @@ Retrieve information about lineages' variants vie outbreak.info's API
 }
 \examples{
 
-\dontrun{
+
 get_lineage_report(lineages = c("B.1.1.7", "B.1.617.2"))
-}
+
 
 }
