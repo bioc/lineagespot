@@ -35,8 +35,13 @@ get_lineage_report <- function(
         strain <- GET(paste0(base.url, l))
         
         if (is.null(content(strain))){
-            message("API currently unavailable, please use tab delimeted files
-                    instead ")
+            message(c(
+                "API currently unavailable, ",
+                "please use tab delimeted files instead.\n",
+                "See ",
+                system.file("extdata", "ref", package = "lineagespot")
+            ))
+            
             return(FALSE)
           
             
