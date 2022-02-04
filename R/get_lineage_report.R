@@ -18,21 +18,34 @@
 #'
 #' @examples
 #' 
-#' \dontrun{
+#' 
 #' get_lineage_report(lineages = c("B.1.1.7", "B.1.617.2"))
-#' }
+#' 
 #' 
 get_lineage_report <- function(
     lineages, base.url =
         "https://api.outbreak.info/genomics/lineage-mutations?pangolin_lineage="
-) {
+) { 
+    
     lineages <- str_to_upper(lineages)
 
     out <- list()
 
     for (l in lineages) {
         strain <- GET(paste0(base.url, l))
-
+        
+        if (is.null(content(strain))){
+            message(c(
+                "API currently unavailable, ",
+                "please use tab delimeted files instead.\n",
+                "See ",
+                system.file("extdata", "ref", package = "lineagespot")
+            ))
+            
+            return(FALSE)
+          
+            
+        }
         strain <- content(strain)
 
         if (strain$success) {
@@ -57,10 +70,13 @@ get_lineage_report <- function(
             out[[l]] <- strain
         } else {
             message(c("No data has been retrieved for ", l))
-            return(NULL)
+            return(FALSE)
         }
     }
 
-
+    
     return(out)
 }
+
+
+

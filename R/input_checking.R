@@ -66,7 +66,7 @@ list_vcf <- function(vcf_fls = NULL,
 }
 
 
-#' list_gff3
+#' is_gff3
 #'
 #' @description
 #' Identify whether a file is in GFF3 format.
@@ -84,8 +84,8 @@ list_vcf <- function(vcf_fls = NULL,
 #' gff3_path <- system.file("extdata", "NC_045512.2_annot.gff3",
 #'   package = "lineagespot"
 #' )
-#' list_gff3(gff3_path)
-list_gff3 <- function(file) {
+#' is_gff3(gff3_path)
+is_gff3 <- function(file) {
   if (is.null(file)) {
     stop(c(
       "Please provide a valid GFF3 file",
@@ -101,7 +101,7 @@ list_gff3 <- function(file) {
     stop("Please give path of only one GFF3 file.")
   }
 
-  res <- str_detect(file, "gff3")
+  res <- str_detect(file, ".gff3$")
 
   return(res)
 }
@@ -149,10 +149,12 @@ list_input <- function(vcf_fls = NULL,
     stop("No VCF is found. Please insert valid input files.")
   }
 
-  if (list_gff3(gff3_path) == FALSE) {
+  if (is_gff3(gff3_path) == FALSE) {
     stop("No valid gff3 was given. Please insert path of valid gff3.")
   }
 
 
   return(vcf_fls)
 }
+
+
