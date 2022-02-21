@@ -73,12 +73,12 @@ authors:
 
 cff-version: "1.1.0"
 date-released: 2021-03-24
-doi: "10.1101/2021.03.17.21252673"
+doi: "https://doi.org/10.1038/s41598-022-06625-6"
 keywords: 
   - "Epidemiology"
 license: MIT
 message: "If you use this software, please cite it using these metadata."
 repository-code: "https://github.com/BiodataAnalysisGroup/lineagespot"
 title: "Detecting SARS-CoV-2 lineages and mutational load in municipal wastewater; a use-case in the metropolitan area of Thessaloniki, Greece"
-version: "0.99.0"
+version: "0.99.14"
 ...
