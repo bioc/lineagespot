@@ -80,5 +80,5 @@ license: MIT
 message: "If you use this software, please cite it using these metadata."
 repository-code: "https://github.com/BiodataAnalysisGroup/lineagespot"
 title: "Detecting SARS-CoV-2 lineages and mutational load in municipal wastewater; a use-case in the metropolitan area of Thessaloniki, Greece"
-version: "0.99.14"
+version: "0.99.15"
 ...
