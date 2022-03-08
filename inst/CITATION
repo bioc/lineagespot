@@ -1,14 +1,17 @@
-Package: lineagespot
-Title: Detection of SARS-CoV-2 lineages in wastewater samples using 
-    next-generation sequencing
-Version: 0.99.16
-Date: 2021-03-24
-Authors@R: c(
+citHeader("To cite lineagespot in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = paste0(
+    "Detecting SARS-CoV-2 lineages and mutational load in municipal wastewater and",
+    " a use-case in the metropolitan area of Thessaloniki, Greece"
+  ),
+  author   = personList(
     person(given = "Nikolaos",
-            family = "Pechlivanis",
-            role = c("aut", "cre"),
-            email = "nikosp41@gmail.com",
-            comment = c(ORCID = "0000-0003-2502-612X")),
+           family = "Pechlivanis",
+           role = c("aut", "cre"),
+           email = "nikosp41@gmail.com",
+           comment = c(ORCID = "0000-0003-2502-612X")),
     person("Maria", "Tsagiopoulou", email = "-", role = "aut"),
     person("Maria Christina", "Maniou", email = "-", role = "aut"),
     person("Anastasis", "Togkousidis", email = "-", role = "aut"),
@@ -29,35 +32,14 @@ Authors@R: c(
     person("Nikolaos", "Papaioannou", email = "-", role = "aut"),
     person("Anagnostis", "Argiriou", email = "-", role = "aut"),
     person("Fotis E.", "Psomopoulos", email = "-", role = "aut")
-    )
-Description: Lineagespot is a framework written in R, and aims to identify 
-    SARS-CoV-2 related mutations based on a single (or a list) of variant(s) 
-    file(s) (i.e., variant calling format). The method can facilitate the 
-    detection of SARS-CoV-2 lineages in wastewater samples using next 
-    generation sequencing, and attempts to infer the potential distribution 
-    of the SARS-CoV-2 lineages. 
-License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: false
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
-biocViews: VariantDetection, VariantAnnotation, Sequencing
-Imports:
-    VariantAnnotation,
-    MatrixGenerics,
-    SummarizedExperiment,
-    data.table,
-    stringr,
-    httr,
-    utils
-Suggests:
-    BiocStyle,
-    RefManageR,
-    rmarkdown,
-    knitr,
-    testthat (>= 3.0.0)
-URL: https://github.com/BiodataAnalysisGroup/lineagespot
-BugReports: https://github.com/BiodataAnalysisGroup/lineagespot/issues
-BiocType: Software
-VignetteBuilder: knitr
-Config/testthat/edition: 3
+  ),
+  journal  = "Scientific Reports",
+  year     = 2022,
+  url      = "https://github.com/BiodataAnalysisGroup/lineagespot",
+  textVersion = paste0(
+    "Pechlivanis, N., Tsagiopoulou, M., Maniou, M.C. et al. ",
+    "Detecting SARS-CoV-2 lineages and mutational load in municipal wastewater and ",
+    "a use-case in the metropolitan area of Thessaloniki, Greece. Sci Rep 12, 2659 (2022). ",
+    "https://doi.org/10.1038/s41598-022-06625-6"
+  )
+)
