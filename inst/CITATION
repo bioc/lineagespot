@@ -35,7 +35,7 @@ citEntry(
   ),
   journal  = "Scientific Reports",
   year     = 2022,
-  url      = "https://github.com/BiodataAnalysisGroup/lineagespot",
+  url      = "https://doi.org/10.1038/s41598-022-06625-6",
   textVersion = paste0(
     "Pechlivanis, N., Tsagiopoulou, M., Maniou, M.C. et al. ",
     "Detecting SARS-CoV-2 lineages and mutational load in municipal wastewater and ",
