@@ -1,0 +1,66 @@
+name: R-CMD-check-bioc
+
+# Runs R CMD check and BiocCheck inside the official Bioconductor
+# containers, which already ship the system libraries that heavy
+# dependencies such as VariantAnnotation (Rhtslib, zlib) need.
+
+on:
+  push:
+    branches: [master, main, devel]
+  pull_request:
+    branches: [master, main, devel]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    container:
+      image: bioconductor/bioconductor_docker:${{ matrix.bioc }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        bioc: [RELEASE_3_23, devel]
+
+    env:
+      R_KEEP_PKG_SOURCE: yes
+      # Bioconductor discourages network access at check time; setting this
+      # keeps httr/testthat from hanging if the outbreak.info API is slow.
+      _R_CHECK_TESTS_NLINES_: 0
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache R packages
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/lib/R/host-site-library
+          key: ${{ matrix.bioc }}-${{ hashFiles('DESCRIPTION') }}
+          restore-keys: ${{ matrix.bioc }}-
+
+      - name: Install dependencies
+        run: |
+          install.packages("remotes")
+          remotes::install_deps(dependencies = TRUE, repos = BiocManager::repositories())
+          BiocManager::install(c("rcmdcheck", "BiocCheck"), ask = FALSE, update = FALSE)
+        shell: Rscript {0}
+
+      - name: R CMD check
+        run: |
+          rcmdcheck::rcmdcheck(
+            args = c("--no-manual", "--timings"),
+            error_on = "warning",
+            check_dir = "check"
+          )
+        shell: Rscript {0}
+
+      - name: BiocCheck
+        run: |
+          BiocCheck::BiocCheck(".", `quit-with-status` = TRUE)
+        shell: Rscript {0}
+
+      - name: Upload check results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.bioc }}-check-results
+          path: check
