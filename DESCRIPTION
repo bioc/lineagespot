@@ -48,7 +48,6 @@ Imports:
     SummarizedExperiment,
     data.table,
     stringr,
-    httr,
     utils
 Suggests:
     BiocStyle,
