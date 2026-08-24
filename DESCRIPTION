@@ -1,8 +1,8 @@
 Package: lineagespot
 Title: Detection of SARS-CoV-2 lineages in wastewater samples using 
     next-generation sequencing
-Version: 1.17.0
-Date: 2021-03-24
+Version: 1.16.1
+Date: 2026-08-20
 Authors@R: c(
     person(given = "Nikolaos",
             family = "Pechlivanis",
@@ -48,7 +48,6 @@ Imports:
     SummarizedExperiment,
     data.table,
     stringr,
-    httr,
     utils
 Suggests:
     BiocStyle,
